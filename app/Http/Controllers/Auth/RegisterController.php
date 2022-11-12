@@ -52,7 +52,20 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4|confirmed',
-        ]);
+            'password-confirm' => ['required', 'min:4', 'same:password'],
+        ],
+        [
+            'username.required' => '必須項目です',
+            'username.between:4,12' => '4文字以上12文字以内で入力してください',
+            'mail.required' => '必須項目です',
+		    'mail.email' => 'メールアドレスではありません',
+            'mail.between:4,12' => '4文字以上12文字以内で入力してください',
+		    'password.required' => '必須項目です',
+		    'password.min' => '4文字以上12文字以内で入力してください',
+            'password-confirm.between:4,12' => '4文字以上12文字以内で入力してください',
+		    'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
+        ]
+    );
     }
 
     /**
@@ -79,8 +92,14 @@ class RegisterController extends Controller
         if($request->isMethod('post')){
             $data = $request->input();
 
-            $this->create($data);
-            return redirect('added');
+            $val = $this->validator($data);
+            if($val->fails()){
+                return redirect('register')
+                ->withErrors($val);
+            }else{
+                $this->create($data);
+                return redirect('added');
+            }
         }
         return view('auth.register');
     }
