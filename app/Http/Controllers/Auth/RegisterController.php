@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|min:4|max:255',
             'mail' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4',
             'password-confirm' => ['required', 'min:4', 'same:password'],
@@ -64,6 +64,7 @@ class RegisterController extends Controller
 		    'password.min' => '4文字以上12文字以内で入力してください',
             'password-confirm.min' => '4文字以上12文字以内で入力してください',
 		    'password-confirm.same' => 'パスワードと確認用パスワードが一致していません',
+             'password-confirm.required' => '必須項目です',
         ]
     );
     }

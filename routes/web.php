@@ -28,6 +28,8 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
@@ -40,4 +42,6 @@ Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
 
+Route::post('/create','PostsController@create');
 
+Route::post('/post/update','PostsController@update');
