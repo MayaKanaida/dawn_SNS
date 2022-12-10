@@ -38,12 +38,12 @@ Route::get('/profile','UsersController@profile');
 
 Route::get('/search','UsersController@index');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
-
-
 Route::post('/create','PostsController@create');
 
 Route::post('/post/update','PostsController@update');
 
 Route::get('/delete/{id}','PostsController@delete');
+
+Route::get('/followList','FollowsController@followList');
+
+Route::get('/followerList','FollowsController@followerList');
