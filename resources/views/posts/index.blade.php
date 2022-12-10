@@ -51,8 +51,10 @@
 </td>
 </tr>
     <td>
-      <img src="/images/trash_h.png" alt="削除ボタン">
+      <a href="delete/{{ $post->id }}"><img src="/images/trash_h.png" alt="削除ボタン"></a>
     </td>
+
+
      </tr>
    @endforeach
 </table>

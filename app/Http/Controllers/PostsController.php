@@ -20,6 +20,7 @@ class PostsController extends Controller
 
     public function create(Request $request){
        $post = $request->input('newPost');
+    //    dd($post); データが正しく入っているか確認できる方法
         DB::table('posts')->insert([
             'posts' => $post,
             'user_id' => Auth::id(),
@@ -40,5 +41,13 @@ class PostsController extends Controller
         ]);
         return back();
 
+    }
+
+        public function delete($id){
+           DB::table('posts')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect('/top');
     }
 }
