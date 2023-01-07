@@ -20,7 +20,10 @@
 
 
 //ログアウト中のページ
+
+// URLが/loginの時は、LoginControllerのloginメソッドを実行する
 Route::get('/login', 'Auth\LoginController@login');
+// ログイン画面前、post送信後
 Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
@@ -34,10 +37,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 //ログイン中のページ
 Route::get('/top','PostsController@index');
 
-Route::get('/profile','UsersController@profile');
-
-Route::get('/search','UsersController@index');
-
 Route::post('/create','PostsController@create');
 
 Route::post('/post/update','PostsController@update');
@@ -47,3 +46,12 @@ Route::get('/delete/{id}','PostsController@delete');
 Route::get('/followList','FollowsController@followList');
 
 Route::get('/followerList','FollowsController@followerList');
+
+Route::get('/profile/{id}','UsersController@profile');
+Route::get('/myprofile','UsersController@myprofile');
+
+Route::post('/follow','FollowsController@follow');
+Route::delete('/unfollow','FollowsController@unfollow');
+
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');

@@ -3,8 +3,8 @@
 @section('content')
 
 <div>
-  @foreach($posts as $post)
-  <a href="">
+  @foreach($posts->unique('uid') as $post)
+  <a href="profile/{{ $post->uid }}">
     <img src="/images/{{ $post->images }}" alt="アイコン">
   </a>
   @endforeach
