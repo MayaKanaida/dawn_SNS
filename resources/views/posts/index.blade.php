@@ -15,7 +15,7 @@
   @foreach ($posts as $post)
   <tr>
     <td>
-      <img src="/images/{{ $post->images }}" alt="アイコン">
+      <img src="/storage/{{ $post->images }}" alt="アイコン">
     </td>
     <td>{{ $post->username }}</td>
     <td>{{ $post->posts }}</td>

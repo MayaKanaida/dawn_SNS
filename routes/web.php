@@ -35,23 +35,33 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 
 //ログイン中のページ
+
+//トップページ画面遷移
 Route::get('/top','PostsController@index');
 
+//投稿機能
 Route::post('/create','PostsController@create');
-
+//投稿更新
 Route::post('/post/update','PostsController@update');
-
+//投稿機能
 Route::get('/delete/{id}','PostsController@delete');
 
+//フォローフォロワーページ遷移
 Route::get('/followList','FollowsController@followList');
-
 Route::get('/followerList','FollowsController@followerList');
 
+//他人のプロフィール画面遷移
 Route::get('/profile/{id}','UsersController@profile');
+//プロフィール画面遷移
 Route::get('/myprofile','UsersController@myprofile');
+//プロフィール更新
+Route::post('/myprofile/update','UsersController@profileUpdate');
 
+//フォローフォロワー機能
 Route::post('/follow','FollowsController@follow');
 Route::delete('/unfollow','FollowsController@unfollow');
 
+//検索画面遷移
 Route::get('/search','UsersController@search');
+//検索機能
 Route::post('/search','UsersController@search');

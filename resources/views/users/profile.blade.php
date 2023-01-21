@@ -3,7 +3,7 @@
 @section('content')
 <div>
 @foreach($posts->unique('id') as $post)
-  <img src="/images/{{ $post->images }}" alt="アイコン">
+  <img src="/storage/{{ $post->images }}" alt="アイコン">
   <p>{{ $post->username }}</p>
   <p>{{ $post->bio }}</p>
   @if($followNumbers->contains($post->id))

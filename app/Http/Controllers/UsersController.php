@@ -70,8 +70,55 @@ class UsersController extends Controller
     }
 
     public function myprofile(){
-       $user=Auth::user();
+       $auth=Auth::user();
 
-        return view('users.myprofile',compact('user'));
+       $followCount = DB::table('follows')
+            ->where('follower',Auth::id())
+            ->count();
+
+        $followerCount = DB::table('follows')
+            ->where('follow',Auth::id())
+            ->count();
+
+        return view('users.myprofile',compact('auth', 'followCount', 'followerCount'));
+    }
+
+    public function profileUpdate(Request $request){
+        //①①$requestに入っている値をそれぞれ固有の変数に入れる
+        $username = $request->username;
+        $mail = $request->mail;
+        $bio = $request->bio;
+
+
+   //②パスワードが未入力なのか、入力されているのか
+        if($request->password){
+            $password = bcrypt($request->password);
+        }else {
+            $password = DB::table('users')
+            ->where('id',Auth::id())
+            ->pluck('password');
+        }
+
+   //③イメージがアップロードされているかされていないか
+        if($request->iconimage){
+            $image = $request->file('iconimage')->getClientOriginalName();
+            $request->file('iconimage')->storeAs('', $image, 'public');
+        }else {
+            $image = DB::table('users')
+                ->where('id',Auth::id())
+                ->pluck('images');
+        }
+
+        //④更新処理
+        DB::table('users')
+        ->where('id',Auth::id())
+        ->update([
+            'username' => $username,
+            'mail' => $mail,
+            'password' => $password,
+            'images' => $image,
+            'bio' => $bio,
+        ]);
+       return redirect("/myprofile");
     }
 }
