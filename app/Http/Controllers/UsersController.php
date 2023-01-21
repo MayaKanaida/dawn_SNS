@@ -88,6 +88,8 @@ class UsersController extends Controller
         return view('users.myprofile',compact('auth', 'followCount', 'followerCount'));
     }
 
+//↓既存のプロフィール内容を変更する場合の記述↓
+
     public function profileUpdate(Request $request){
         //①①$requestに入っている値をそれぞれ固有の変数に入れる
         $username = $request->username;
@@ -95,7 +97,7 @@ class UsersController extends Controller
         $bio = $request->bio;
 
 
-   //②パスワードが未入力なのか、入力されているのか
+   //②パスワードが新たに入力されていればそれを、入力されていなければ元のパスワードをそのまま流用
         if($request->password){
             $password = bcrypt($request->password);
         }else {
@@ -104,8 +106,9 @@ class UsersController extends Controller
             ->pluck('password');
         }
 
-   //③イメージがアップロードされているかされていないか
+   //③イメージがアップロードされていればそれを、アップロードされていなければ元のイメージをそのまま流用
         if($request->iconimage){
+            // イメージをアップロードする時は、イメージの名前を保存（MyAdmin参照）
             $image = $request->file('iconimage')->getClientOriginalName();
             $request->file('iconimage')->storeAs('', $image, 'public');
         }else {

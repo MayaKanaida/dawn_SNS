@@ -2,14 +2,14 @@
 
 @section('content')
 
-<!-- inputタグで検索窓作成  コマンド押して「め」 -->
+<!-- ユーザー名の検索フォーム -->
 <form action="/search" method="post">
   @csrf
 <input type="text" name="keyword" placeholder="ユーザー名">
 <input type="image" src="images/post.png">
 </form>
 
-
+<!-- 利用ユーザーのアイコン、名前を一覧で表示 -->
 @foreach ($users_list as $user_list)
   <tr>
     <td>
@@ -17,6 +17,7 @@
     </td>
     <td>{{ $user_list->username }}</td>
 
+    <!-- フォローしていれば「フォローをはずす」、フォローしてなければ「フォローする」を表示 -->
 <div>
   @if($followNumbers->contains($user_list->id))
     <form action="/unfollow" method="post">
