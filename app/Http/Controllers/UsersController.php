@@ -15,6 +15,11 @@ class UsersController extends Controller
             ->where('posts.user_id', $id)
             ->select('users.id as id','users.username','users.images', 'users.bio', 'posts.posts','posts.created_at as created_at')
             ->get();
+
+        $profile_user = DB::table('users')
+        ->where('id',$id)
+        ->first();
+
         $auth = Auth::user();
 
         $followCount = DB::table('follows')
@@ -28,7 +33,7 @@ class UsersController extends Controller
             ->where('follower', Auth::id())
             ->pluck('follow');
 
-        return view('users.profile',compact('posts', 'auth', 'followCount', 'followerCount', 'followNumbers'));
+        return view('users.profile',compact('posts', 'auth', 'followCount', 'followerCount', 'followNumbers','profile_user'));
     }
     public function search(Request $request){
 

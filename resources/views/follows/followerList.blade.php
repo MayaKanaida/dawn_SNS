@@ -3,9 +3,9 @@
 @section('content')
 
 <div>
-  @foreach($posts->unique('uid') as $post)
-  <a href="profile/{{ $post->uid }}">
-    <img src="/images/{{ $post->images }}" alt="アイコン">
+  @foreach($users as $user)
+  <a href="profile/{{ $user->id }}">
+    <img src="/images/{{ $user->images }}" alt="アイコン">
   </a>
   @endforeach
 </div>

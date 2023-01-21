@@ -2,25 +2,23 @@
 
 @section('content')
 <div>
-@foreach($posts->unique('id') as $post)
-  <img src="/storage/{{ $post->images }}" alt="アイコン">
-  <p>{{ $post->username }}</p>
-  <p>{{ $post->bio }}</p>
-  @if($followNumbers->contains($post->id))
-    <form action="/unFollow" method="post">
+  <img src="/storage/{{ $profile_user->images }}" alt="アイコン">
+  <p>{{ $profile_user->username }}</p>
+  <p>{{ $profile_user->bio }}</p>
+  @if($followNumbers->contains($profile_user->id))
+    <form action="/unfollow" method="post">
     @method('delete')
     @csrf
-    <input type="hidden" name="follow_id" value="{{ $post->id }}">
+    <input type="hidden" name="follow_id" value="{{ $profile_user->id }}">
     <input type="submit" value="フォローはずす">
   </form>
   @else
   <form action="/follow" method="post">
     @csrf
-    <input type="hidden" name="follow_id" value="{{ $post->id }}">
+    <input type="hidden" name="follow_id" value="{{ $profile_user->id }}">
     <input type="submit" value="フォローする">
   </form>
   @endif
-@endforeach
 </div>
 
 <table>
