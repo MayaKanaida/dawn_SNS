@@ -8,14 +8,18 @@ use DB;
 
 class PostsController extends Controller
 {
-    //
+    //web.phpのtop画面に移行した時にindexを実装する
     public function index(){
+        // ＄postsのテーブルに接続する  //usersテーブルと連結する(15行目)
         $posts = DB::table('posts')
             ->join('users', 'posts.user_id', '=', 'users.id')
+            // postsテーブルのuser_idカラムがログインしているuserのidに絞る
             ->where('posts.user_id',Auth::id())
+            // postsテーブルのid,username,images,posts,時間を選択（必要な情報を選択）
             ->select('posts.id as id','users.username','users.images','posts.posts','posts.created_at as created_at')
+            // 全部の情報を取得
             ->get();
-
+        // ログインしているユーザー情報を全て取得し、$auth変数に代入する
         $auth = Auth::user();
 
         $followCount = DB::table('follows')

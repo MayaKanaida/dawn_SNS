@@ -1,9 +1,10 @@
 @chasert "utf-8";
 
-html{
+html {
     height: 100%;
 }
-body{
+
+body {
     height: 100%;
-    background: #3C4767;
+    background: transparent linear-gradient(180deg, #3C4767 0%, #3C4767 60%, #DF563B 100%) 0% 0% no-repeat padding-box;
 }

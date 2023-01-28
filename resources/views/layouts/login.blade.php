@@ -23,11 +23,11 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
+        <h1><a><img src="{{asset('images/main_logo.png')}}"></a></h1>
             <div id="">
                 <div id="">
-                    <p>{{ $auth->username }}さん<img src="images/arrow.png"></p>
-                <div>
+                    <p class="login_name">{{ $auth->username }}さん<img src="{{asset('images/'.$auth->images)}}"></p>
+                <div class="switching">
                 <ul>
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/myprofile">プロフィール</a></li>
@@ -42,19 +42,19 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ $auth->username }}さんの</p>
+                <p class="users">{{ $auth->username }}さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>{{ $followCount }}名</p>
+                <p class="follow_number">フォロー数</p>
+                <p class="number">{{ $followCount }}名</p>
                 </div>
-                <p class="btn"><a href="/followList">フォローリスト</a></p>
+                <p class="btn_1"><a href="/followList" >フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>{{ $followerCount }}名</p>
+                <p class="follower_number">フォロワー数</p>
+                <p class="number_2">{{ $followerCount }}名</p>
                 </div>
-                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
+                <p class="btn_2"><a href="/followerList">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <p class="btn_3"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

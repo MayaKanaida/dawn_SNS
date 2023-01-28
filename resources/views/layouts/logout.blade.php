@@ -8,6 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/logout.css">
+     <link rel="stylesheet" href="css/style.css">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -20,14 +21,16 @@
     <!--OGPタグ/twitterカード-->
 </head>
 <body>
-    <header>
-        <h1><img src="images/main_logo.png"></h1>
-        <p>Social Network Service</p>
-    </header>
-    <div id="container">
+    <div class="logout_page">
+        <header>
+            <h1 class="logout_logo"><img src="images/main_logo.png" ></h1>
+            <p class="subtitle">Social Network Service</p>
+        </header>
+        <div id="container">
         @yield('content')
-    </div >
+        </div >
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
+    </div>
 </body>
 </html>
